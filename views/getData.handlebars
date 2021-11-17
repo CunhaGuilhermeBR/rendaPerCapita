@@ -1,0 +1,21 @@
+<div class="container">  
+  <form id="data" action="/calculate" method="post">
+    <h3>Renda per Capita</h3>
+    <fieldset>
+      <input id="nameInput" name="name" placeholder="Nome(Opcional)" type="text" tabindex="1" >
+    </fieldset>
+    <fieldset>
+      <input id="cepInput" name="cep" placeholder="CEP(Apenas números)" type="text" tabindex="2" required>
+    </fieldset>
+    <fieldset>
+      <input id="incomeInput" name="income" placeholder="Renda" type="text" tabindex="3" required>
+    </fieldset>
+    <fieldset>
+      <input id="dependentsInput" name="dependents" placeholder="Dependentes" type="number" min="0" tabindex="4" required>
+    </fieldset>
+    <fieldset>
+      <button id="btnSubmit" name="submit" type="submit" id="data-submit" data-submit="...Sending">Enviar</button>
+    </fieldset>
+    
+  </form>
+</div>

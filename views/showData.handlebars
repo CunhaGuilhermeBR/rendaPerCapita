@@ -1,0 +1,21 @@
+<div class="container" style="text-align: center;">
+  <form id="data">
+    <h3>Renda per Capita</h3>
+    <h4>{{capita}}</h4>
+
+    {{#if person}}
+    <fieldset>
+      <h3>Pessoa</h3>
+      <p>{{person}}</p>
+    </fieldset>
+    {{/if}}
+
+
+    <fieldset>
+      <h3>Endereço</h3>
+      <p>{{publicPlace}} {{complement}} {{district}}, {{city}}, {{state}}</p>
+      <p>{{cep}}</p>
+    </fieldset>
+
+  </form>
+</div>
