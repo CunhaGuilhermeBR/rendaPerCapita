@@ -27,3 +27,14 @@ test('Validacao CEP nao e um numero', (t) => {
     t.assert(app.validateCep('cep') === false, "Validacao correta")
     t.end()
 })
+
+
+test('Validacao CEP nao e um numero, 8 digitos', (t) => {
+    t.assert(app.validateCep('cepcepce') === false, "Validacao correta")
+    t.end()
+})
+
+test('Renda 0', (t) => {
+    t.assert(app.calculateIncome(0, 4) === 0, "Renda per Capita certa!")
+    t.end()
+})
