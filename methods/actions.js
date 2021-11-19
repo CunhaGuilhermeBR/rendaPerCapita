@@ -9,35 +9,49 @@ var functions = {
         }
     },
     validateCep: function(cep) {
-        var objER = /^[0-9]{8}$/;
+        var valid_cep_regex = /^[0-9]{8,}$/;
 
         cep = trim(cep)
-        if (cep.length > 0) {
-            if (objER.test(cep))
-                return true;
-            else
-                return false;
-        } else
-            return false
+        return valid_cep_regex.test(cep)
     },
     showData: async function(cep, incomeCapita, name, res) {
         const api = await returnJson(cep)
-        res.render('showData', {
-            cep: cep,
-            person: name,
-            capita: incomeCapita,
-            publicPlace: api.data.logradouro,
-            complement: api.data.complemento,
-            district: api.data.bairro,
-            city: api.data.localidade,
-            state: api.data.uf
-        })
+        if (api == null) {
+            const error_message = 'Informacao nao disponivel no momento'
+            res.render('showData', {
+                cep: cep,
+                person: name,
+                capita: incomeCapita,
+                publicPlace: error_message,
+                complement: error_message,
+                district: error_message,
+                city: error_message,
+                state: error_message
+            })
+        } else {
+            res.render('showData', {
+                cep: cep,
+                person: name,
+                capita: incomeCapita,
+                publicPlace: api.data.logradouro,
+                complement: api.data.complemento,
+                district: api.data.bairro,
+                city: api.data.localidade,
+                state: api.data.uf
+            })
+        }
+
     }
 }
 
 async function returnJson(cep) {
-    const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
-    return response
+    try {
+        const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
+        return response
+    } catch {
+        console.log('Error', error.message)
+        return null
+    }
 }
 
 function trim(str) {
